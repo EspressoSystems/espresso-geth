@@ -1,0 +1,4 @@
+FROM ghcr.io/espressosystems/geth-l1:main
+
+COPY config/genesis-staging.json genesis.json
+
