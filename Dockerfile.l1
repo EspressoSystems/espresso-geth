@@ -6,6 +6,6 @@ COPY entrypoint-l1.sh /entrypoint.sh
 
 VOLUME ["/db"]
 
-HEALTHCHECK CMD curl --fail http://localhost:8545 -X POST -H "Content-Type: application/json" --data '{"method":"eth_chainId","params":[],"id":1,"jsonrpc":"2.0"}'
+HEALTHCHECK --start-period=300s --start-interval=1s CMD curl --fail http://localhost:8545 -X POST -H "Content-Type: application/json" --data '{"method":"eth_chainId","params":[],"id":1,"jsonrpc":"2.0"}'
 
 ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]
