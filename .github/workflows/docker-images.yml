@@ -16,11 +16,10 @@ jobs:
         dockerfile: ./Dockerfile.l1
     secrets: inherit
 
-jobs:
   docker-staging-l1:
     uses: ./.github/workflows/docker.yml
     with:
-        images: ghcr.io/espressosystems/geth-l1-staging 
+        images: ghcr.io/espressosystems/geth-l1-staging
         context: ./
         dockerfile: ./staging.Dockerfile.l1
     secrets: inherit
