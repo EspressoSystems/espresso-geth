@@ -38,6 +38,8 @@ fi
 # pruned within minutes of starting the devnet.
 
 exec geth \
+	--dev \
+	--dev.period=12 \
 	--datadir="$GETH_DATA_DIR" \
 	--verbosity="$VERBOSITY" \
 	--http \
