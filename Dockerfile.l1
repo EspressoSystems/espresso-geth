@@ -3,6 +3,8 @@ FROM ethereum/client-go:v1.13.14
 RUN apk add --no-cache jq curl
 
 COPY entrypoint-l1.sh /entrypoint.sh
+COPY config/config.toml /config/config.toml
+COPY config/jwt-secret.json /config/jwt-secret.json
 
 VOLUME ["/db"]
 
