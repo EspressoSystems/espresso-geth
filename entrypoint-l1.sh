@@ -38,37 +38,15 @@ fi
 # pruned within minutes of starting the devnet.
 
 exec geth \
+	--config=/config/config.toml \
 	--dev \
 	--dev.period=12 \
 	--datadir="$GETH_DATA_DIR" \
 	--verbosity="$VERBOSITY" \
-	--http \
-	--http.corsdomain="*" \
-	--http.vhosts="*" \
-	--http.addr=0.0.0.0 \
 	--http.port="$RPC_PORT" \
-	--http.api=web3,debug,eth,txpool,net,engine \
-	--ws \
-	--ws.addr=0.0.0.0 \
 	--ws.port="$WS_PORT" \
-	--ws.origins="*" \
-	--ws.api=debug,eth,txpool,net,engine \
-	--syncmode=full \
-	--nodiscover \
-	--maxpeers=1 \
 	--networkid=$CHAIN_ID \
 	--unlock=$BLOCK_SIGNER_ADDRESS \
-	--mine \
 	--miner.etherbase=$BLOCK_SIGNER_ADDRESS \
 	--password="$GETH_DATA_DIR"/password \
-	--allow-insecure-unlock \
-	--rpc.allow-unprotected-txs \
-	--authrpc.addr="0.0.0.0" \
-	--authrpc.port="8551" \
-	--authrpc.vhosts="*" \
-	--authrpc.jwtsecret=/config/jwt-secret.txt \
-	--gcmode=archive \
-	--metrics \
-	--metrics.addr=0.0.0.0 \
-	--metrics.port=6060 \
 	"$@"
