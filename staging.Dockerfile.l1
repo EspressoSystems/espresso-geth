@@ -1,4 +1,6 @@
-FROM ghcr.io/espressosystems/geth-l1:main
+ARG GETH_VERSION="main"
+
+FROM ghcr.io/espressosystems/geth-l1:${GETH_VERSION}
 
 COPY config/genesis-staging.json genesis.json
 

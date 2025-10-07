@@ -6,7 +6,6 @@ GETH_DATA_DIR=/db
 GETH_CHAINDATA_DIR="$GETH_DATA_DIR/geth/chaindata"
 GETH_KEYSTORE_DIR="$GETH_DATA_DIR/keystore"
 GENESIS_FILE_PATH="${GENESIS_FILE_PATH:-/genesis.json}"
-CHAIN_ID=$(cat "$GENESIS_FILE_PATH" | jq -r .config.chainId)
 BLOCK_SIGNER_PRIVATE_KEY="ac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80"
 BLOCK_SIGNER_ADDRESS="0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"
 RPC_PORT="${RPC_PORT:-8545}"
@@ -45,7 +44,6 @@ exec geth \
 	--verbosity="$VERBOSITY" \
 	--http.port="$RPC_PORT" \
 	--ws.port="$WS_PORT" \
-	--networkid=$CHAIN_ID \
 	--unlock=$BLOCK_SIGNER_ADDRESS \
 	--miner.etherbase=$BLOCK_SIGNER_ADDRESS \
 	--password="$GETH_DATA_DIR"/password \
