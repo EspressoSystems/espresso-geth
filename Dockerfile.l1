@@ -1,6 +1,4 @@
-#FROM ethereum/client-go:release-1.16
-# Need unstable for Osaka? WTF
-FROM ethereum/client-go:latest
+FROM ethereum/client-go:release-1.16
 
 RUN apk add --no-cache jq curl
 
