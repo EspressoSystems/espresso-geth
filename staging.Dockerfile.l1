@@ -1,6 +1,15 @@
-ARG GETH_VERSION="main"
+FROM ethereum/client-go:release-1.16
 
-FROM ghcr.io/espressosystems/geth-l1:${GETH_VERSION}
+RUN apk add --no-cache jq curl
+
+COPY entrypoint-l1.sh /entrypoint.sh
+COPY config/config.toml /config/config.toml
+COPY config/jwt-secret.json /config/jwt-secret.json
+
+VOLUME ["/db"]
+
+HEALTHCHECK --start-period=300s --start-interval=1s CMD curl --fail http://localhost:8545 -X POST -H "Content-Type: application/json" --data '{"method":"eth_chainId","params":[],"id":1,"jsonrpc":"2.0"}'
+
+ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]
 
 COPY config/genesis-staging.json genesis.json
-
